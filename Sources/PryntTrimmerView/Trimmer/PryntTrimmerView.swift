@@ -307,6 +307,22 @@ public protocol TrimmerViewDelegate: class {
         let endPosition = rightHandleView.frame.origin.x + assetPreview.contentOffset.x - handleWidth
         return getTime(from: endPosition)
     }
+    
+    public func setStartTime(_ startTime: CMTime) {
+        if let position = getPosition(from: startTime) {
+            let normalizedConstant = max(0, position)
+            leftConstraint?.constant = normalizedConstant
+            layoutIfNeeded()
+        }
+    }
+    
+    public func setEndTime(_ endTime: CMTime) {
+        if let position = getPosition(from: endTime) {
+            let normalizedConstant = max(0, durationSize - position)
+            updateRightConstraint(with: CGPoint(x: -normalizedConstant, y: 0))
+            layoutIfNeeded()
+        }
+    }
 
     private func updateSelectedTime(stoppedMoving: Bool) {
         guard let playerTime = positionBarTime else {
