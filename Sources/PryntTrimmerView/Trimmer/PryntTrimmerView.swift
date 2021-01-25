@@ -288,10 +288,10 @@ public protocol TrimmerViewDelegate: class {
         if let newPosition = getPosition(from: time) {
 
             let offsetPosition = newPosition - assetPreview.contentOffset.x - leftHandleView.frame.origin.x
-            let maxPosition = rightHandleView.frame.origin.x - (leftHandleView.frame.origin.x + handleWidth)
-                              - positionBar.frame.width
-            let normalizedPosition = min(max(0, offsetPosition), maxPosition)
-            positionConstraint?.constant = normalizedPosition
+//            let maxPosition = rightHandleView.frame.origin.x - (leftHandleView.frame.origin.x + handleWidth)
+//                              - positionBar.frame.width
+//            let normalizedPosition = min(max(0, offsetPosition), maxPosition)
+            positionConstraint?.constant = max(0, offsetPosition)
             layoutIfNeeded()
         }
     }
