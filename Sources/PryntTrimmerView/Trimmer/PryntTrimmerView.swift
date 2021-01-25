@@ -291,7 +291,7 @@ public protocol TrimmerViewDelegate: class {
 //            let maxPosition = rightHandleView.frame.origin.x - (leftHandleView.frame.origin.x + handleWidth)
 //                              - positionBar.frame.width
 //            let normalizedPosition = min(max(0, offsetPosition), maxPosition)
-            positionConstraint?.constant = max(0, offsetPosition)
+            positionConstraint?.constant = offsetPosition
             layoutIfNeeded()
         }
     }
